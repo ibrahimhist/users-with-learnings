@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
@@ -6,24 +6,22 @@ import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import { IUser } from '@app/shared/models/user.model';
 import { LoadingService } from '../loading.service';
 import { MessageHandlingService } from '../message-handling.service';
-import { Console } from 'console';
+
+import { BaseService } from '../base.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService extends BaseService {
   private usersSubject = new BehaviorSubject<IUser[]>([]);
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
-  apiUrl = 'https://random-data-api.com/api';
 
   constructor(
     private http: HttpClient,
-    private messageHandlingService: MessageHandlingService,
-    private loadingService: LoadingService
-  ) {}
+    protected messageHandlingService: MessageHandlingService,
+    protected loadingService: LoadingService
+  ) {
+    super(messageHandlingService, loadingService);
+  }
 
   getUsersAsObservable(): Observable<IUser[]> {
     return this.usersSubject.asObservable();
@@ -48,15 +46,5 @@ export class UserService {
         this.setUsers(response);
       }
     });
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      this.messageHandlingService.showErrorMessage(
-        `${operation} failed: ${error.message}`
-      );
-      this.loadingService.hideLoading();
-      return of(result as T);
-    };
   }
 }
