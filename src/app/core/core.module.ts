@@ -14,7 +14,6 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { MaterialModule } from '@app/shared/modules/material/material.module';
 
 import { CoreComponents } from './core-components.index';
-
 @NgModule({
   imports: [
     CommonModule,

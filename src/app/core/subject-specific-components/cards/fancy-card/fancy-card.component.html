@@ -1,0 +1,17 @@
+<div class="fancy-card">
+  <div class="fancy-card__img-box">
+    <img [src]="imageUrl" alt="" />
+  </div>
+
+  <div class="fancy-card__main">
+    <div class="fancy-card__title">{{ title }}</div>
+    <div class="fancy-card__content">{{ content }}</div>
+  </div>
+  <div class="fancy-card__actions">
+    <app-button
+      class="fancy-card__btn"
+      icon="ellipsis-v"
+      buttonType="icon"
+    ></app-button>
+  </div>
+</div>

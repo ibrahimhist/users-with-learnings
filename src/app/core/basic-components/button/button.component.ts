@@ -29,7 +29,7 @@ export class ButtonComponent {
   @Input() isSubmit?: boolean;
   @Input() disabled?: boolean;
 
-  @Input() buttonType?: ButtonType;
+  @Input() buttonType?: ButtonType | string;
   buttonTypeEnum = ButtonType;
 
   @Input() isUploadButton?: boolean;
