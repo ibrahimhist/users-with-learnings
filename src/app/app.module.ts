@@ -17,6 +17,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { CoreModule } from './core/core.module';
+import { UsersComponent } from './pages/users/users.component';
+import { LearningsComponent } from './pages/learnings/learnings.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false,
@@ -24,7 +26,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, UsersComponent, LearningsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
