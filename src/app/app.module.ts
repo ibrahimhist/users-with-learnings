@@ -24,6 +24,7 @@ import { LoadingService } from './shared/services/loading.service';
 import { MessageHandlingService } from './shared/services/message-handling.service';
 import { UserService } from './shared/services/user/user.service';
 import { LearningService } from './shared/services/learning/learning.service';
+import { SearchPipe } from './shared/pipes/search.pipe';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false,
@@ -37,6 +38,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FooterComponent,
     UsersComponent,
     LearningsComponent,
+
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

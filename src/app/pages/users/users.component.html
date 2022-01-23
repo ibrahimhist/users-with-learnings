@@ -1,6 +1,60 @@
-<div>
-  <div>search</div>
-  <div>Create New</div>
-  <div>List</div>
-  <div>Pagination</div>
+<div class="users">
+  <div class="users__search">
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="searchValue"
+      autocomplete="off"
+      placeholder="Search User"
+      (input)="onChangeSearchInput()"
+    />
+  </div>
+  <div class="users__actions">
+    <span class="users__actions__btn">+ Create User</span>
+  </div>
+  <div class="users__list">
+    <app-fancy-card
+      *ngFor="
+        let user of users
+          | search: searchValue:searchFields
+          | slice: pageIndex * pageSize:pageIndex * pageSize + pageSize
+      "
+      [title]="user.first_name + ' ' + user.last_name"
+      [imageUrl]="user.avatar"
+      [content]="user.email"
+    >
+      <!-- <div extraContent>
+        <div>{{ result?.length }}</div>
+      </div> -->
+
+      <app-button
+        actions
+        icon="book"
+        buttonType="icon"
+        tooltip="X learnings"
+      ></app-button>
+
+      <app-button
+        actions
+        icon="trash"
+        buttonType="icon"
+        tooltip="Remove User"
+        color="error"
+        (clicked)="onClickRemove()"
+      ></app-button>
+    </app-fancy-card>
+  </div>
+  <div class="users__pagination">
+    <mat-paginator
+      #paginator
+      *ngIf="users.length"
+      [length]="users.length"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [pageSizeOptions]="pageSizeOptions"
+      aria-label="Select page"
+      (page)="onPagination($event)"
+    >
+    </mat-paginator>
+  </div>
 </div>

@@ -6,12 +6,11 @@
   <div class="fancy-card__main">
     <div class="fancy-card__title">{{ title }}</div>
     <div class="fancy-card__content">{{ content }}</div>
+    <div class="fancy-card__extra-content">
+      <ng-content select="[extraContent]"></ng-content>
+    </div>
   </div>
   <div class="fancy-card__actions">
-    <app-button
-      class="fancy-card__btn"
-      icon="ellipsis-v"
-      buttonType="icon"
-    ></app-button>
+    <ng-content select="[actions]"></ng-content>
   </div>
 </div>

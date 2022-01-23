@@ -1,6 +1,8 @@
 .footer {
-  padding: 5px;
-  text-align: center;
   background-color: var(--background);
   color: var(--color-secondary-text);
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

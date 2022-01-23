@@ -40,6 +40,9 @@
   &__content {
     font-size: 1.1rem;
     color: var(--color-secondary-text);
-    margin-bottom: 0.5rem;
+  }
+
+  &__actions {
+    display: flex;
   }
 }
