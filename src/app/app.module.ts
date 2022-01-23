@@ -20,13 +20,24 @@ import { CoreModule } from './core/core.module';
 import { UsersComponent } from './pages/users/users.component';
 import { LearningsComponent } from './pages/learnings/learnings.component';
 
+import { LoadingService } from './shared/services/loading.service';
+import { MessageHandlingService } from './shared/services/message-handling.service';
+import { UserService } from './shared/services/user/user.service';
+import { LearningService } from './shared/services/learning/learning.service';
+
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false,
   overlayColor: 'rgba(40,40,40,.1)',
 };
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, UsersComponent, LearningsComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    UsersComponent,
+    LearningsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,7 +50,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule,
     CoreModule,
   ],
-  providers: [],
+  providers: [
+    LoadingService,
+    MessageHandlingService,
+    UserService,
+    LearningService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
