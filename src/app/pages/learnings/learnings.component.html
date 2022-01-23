@@ -1,1 +1,66 @@
-<p>learnings works!</p>
+<div class="learnings">
+  <div class="learnings__search">
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="searchValue"
+      autocomplete="off"
+      placeholder="Search Learning"
+      (input)="onChangeSearchInput()"
+    />
+  </div>
+  <div class="learnings__actions">
+    <span class="learnings__actions__btn">+ Create Learning</span>
+  </div>
+  <div class="learnings__list">
+    <app-image-card
+      *ngFor="
+        let learning of learnings
+          | search: searchValue:searchFields
+          | slice: pageIndex * pageSize:pageIndex * pageSize + pageSize
+      "
+      [title]="learning.name"
+      [imageUrl]="learning.avatar"
+    >
+      <app-button
+        actions
+        icon="users"
+        buttonType="icon"
+        tooltip="Assigned Users"
+      ></app-button>
+
+      <app-button
+        actions
+        [icon]="learning.status === 'archive' ? 'check' : 'archive'"
+        [color]="learning.status === 'archive' ? 'secondary' : 'primary'"
+        buttonType="icon"
+        [tooltip]="
+          'Change Status to ' +
+          (learning.status === 'archive' ? 'Active' : 'Archive')
+        "
+      ></app-button>
+
+      <app-button
+        actions
+        icon="trash"
+        buttonType="icon"
+        tooltip="Remove User"
+        color="error"
+        (clicked)="onClickRemove()"
+      ></app-button>
+    </app-image-card>
+  </div>
+  <div class="learnings__pagination">
+    <mat-paginator
+      #paginator
+      *ngIf="learnings.length"
+      [length]="learnings.length"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [pageSizeOptions]="pageSizeOptions"
+      aria-label="Select page"
+      (page)="onPagination($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

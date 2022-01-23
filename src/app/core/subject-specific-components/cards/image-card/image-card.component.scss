@@ -1,0 +1,81 @@
+$image-height: 9.5rem;
+
+$lines-to-show: 3;
+
+.image-card {
+  overflow: hidden;
+  // box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius-small);
+  background-color: var(--surface);
+
+  &__img-box {
+    img {
+      width: 100%;
+      object-fit: cover;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: $image-height;
+    }
+  }
+
+  &__content {
+    height: 5rem;
+    padding: 1.2rem 1.6rem 0.8rem;
+  }
+
+  &__header {
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-md);
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+
+    display: block;
+    /* Fallback for non-webkit */
+    display: -webkit-box;
+    //   height: $font-size * $line-height * $lines-to-show; /* Fallback for non-webkit */
+
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    span {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  }
+
+  &__link {
+    &,
+    &:link,
+    &:visited {
+      font-size: 1.2rem;
+      color: var(--color-secondary-text);
+      font-weight: var(--font-weight-sm);
+      line-height: 1.4;
+      text-decoration: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    padding: 0.8rem;
+    align-items: center;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.54);
+    // rgba(0, 0, 0, 0.54) bu rengi değerlendir dostum gray darkest yerine
+  }
+}
+
+:host ::ng-deep {
+  .image-card__actions {
+    .app-button {
+      &:not(:first-child()) {
+        margin-left: 0.8rem;
+      }
+    }
+  }
+}

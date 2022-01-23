@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, catchError, map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
 
 import { LoadingService } from '../loading.service';
 import { MessageHandlingService } from '../message-handling.service';
@@ -38,27 +38,18 @@ export class LearningService extends BaseService {
         this.httpOptions
       )
       .pipe(
-        switchMap((random_commerce) =>
-          this.http
-            .get<any[]>(
-              `${this.apiUrl}/lorem_flickr/random_lorem_flickr?size=75`,
-              this.httpOptions
-            )
-            .pipe(
-              map((random_lorem_flickr) => {
-                return random_commerce.map(
-                  (x, index) =>
-                    ({
-                      id: x.id,
-                      name: x.product_name,
-                      status: 'active',
-                      assignedUser: [],
-                      avatar: random_lorem_flickr[index].image_100_100,
-                    } as ILearning)
-                );
-              })
-            )
-        ),
+        map((random_commerce) => {
+          return random_commerce.map(
+            (x, index) =>
+              ({
+                id: x.id,
+                name: x.product_name,
+                status: 'active',
+                assignedUser: [],
+                avatar: 'https://picsum.photos/200/300?random=' + (index + 1),
+              } as ILearning)
+          );
+        }),
         catchError(this.handleError<ILearning[]>(`getLearnings`))
       );
   }

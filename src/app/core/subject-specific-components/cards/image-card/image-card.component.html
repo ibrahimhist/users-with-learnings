@@ -1,0 +1,17 @@
+<div class="image-card">
+  <div class="image-card__img-box">
+    <img [src]="imageUrl" alt="" />
+  </div>
+  <div class="image-card__content">
+    <h6 class="image-card__header">
+      <span>{{ title }}</span>
+    </h6>
+    <span target="_blank" class="image-card__link u-elipsis-text-box">
+      <span class="u-elipsis-text">{{ content }}</span>
+    </span>
+  </div>
+
+  <div class="image-card__actions">
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</div>

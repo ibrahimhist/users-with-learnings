@@ -1,0 +1,47 @@
+.learnings {
+  width: 100%;
+  height: calc(100vh - 8rem);
+  padding-top: 2rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: auto auto 1fr auto;
+  max-width: 88rem;
+  margin: auto;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    overflow: auto;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    &__btn {
+      font-weight: var(--font-weight-md);
+      cursor: pointer;
+      &:hover {
+        font-weight: bolder;
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+    input {
+      width: 50%;
+      border-radius: var(--border-radius-xs);
+      border: 1px solid var(--color-primary-text);
+      padding: 0.5rem 1rem;
+      text-align: center;
+    }
+  }
+}
+
+:host ::ng-deep .mat-paginator {
+  background: transparent;
+  justify-content: center;
+}
