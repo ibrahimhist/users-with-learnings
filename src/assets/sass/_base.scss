@@ -1,0 +1,63 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  // font-size: 62.5%; // 1rem = 10px, 10px/16px browser default 16px
+  font-size: 62.5%; // 1rem = 10px, 10px/16px browser default 16px
+
+  // order önemli
+
+  // @include respond(tab-land) {
+  //   //1200px
+  //   font-size: 56.25%; // 1 rem = 9 px, 9/16=56.25%
+  // }
+
+  // @include respond(tab-port) {
+  //   //900px
+  //   font-size: 50%; // 1 rem = 8 px, 8/16=50%
+  // }
+
+  // @include respond(big-desktop) {
+  //   font-size: 75%; // 1rem = 12px, 12/16=75
+  // }
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  background-color: var(--background);
+  color: var(--color-primary-text);
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: var(--main-scrollbar-width);
+  transition: all 0.3s;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  height: var(--main-scrollbar-width);
+  width: var(--main-scrollbar-width);
+  transition: all 0.3s;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: var(--main-scrollbar-width);
+  box-shadow: inset 0 0 0 12px rgba(0, 0, 0, 0.37);
+  transition: all 0.3s;
+}

@@ -1,0 +1,25 @@
+.app-menu .app-button {
+  width: 100%;
+  text-align: left;
+
+  &__icon {
+    margin-right: 1.5rem !important;
+  }
+
+  .mat-button-wrapper {
+    justify-content: flex-start !important;
+  }
+}
+
+.app-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 5.5rem !important;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+}

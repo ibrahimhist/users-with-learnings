@@ -1,0 +1,31 @@
+.input {
+  font-family: inherit; /* main family inherit alıcak*/
+  color: inherit;
+  line-height: inherit;
+  font-size: 1.4rem;
+
+  &--regular {
+    font-size: 1.5rem;
+  }
+
+  &--light {
+    position: relative;
+    border: 0;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    border-bottom: 1px dashed var(--color-gray);
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+    height: 46px;
+    border-radius: 0;
+
+    &:focus {
+      border-bottom-color: var(--color-gray-darkest);
+    }
+
+    &::-webkit-input-placeholder {
+      color: var(--color-secondary-text);
+    }
+  }
+}

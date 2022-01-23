@@ -1,0 +1,172 @@
+<!-- https://github.com/angular/components/issues/15367 -->
+
+<!-- gönül isterdiki yukarıdaki gibi tek şeyde halletmek ama olmadı -->
+
+<ng-container [ngSwitch]="buttonType">
+  <ng-container *ngSwitchCase="buttonTypeEnum.Basic">
+    <button
+      mat-button
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [class.app-button--icon-only]="!text"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonContentTemplate">
+      </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="buttonTypeEnum.Fab">
+    <button
+      mat-fab
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonIconTemplate"> </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="buttonTypeEnum.Flat">
+    <button
+      mat-flat-button
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [class.app-button--icon-only]="!text"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonContentTemplate">
+      </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="buttonTypeEnum.Icon">
+    <button
+      mat-icon-button
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonIconTemplate"> </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="buttonTypeEnum.MiniFab">
+    <button
+      mat-mini-fab
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonIconTemplate"> </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="buttonTypeEnum.Raised">
+    <button
+      mat-raised-button
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [class.app-button--icon-only]="!text"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonContentTemplate">
+      </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="buttonTypeEnum.Stroked">
+    <button
+      mat-stroked-button
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [class.app-button--icon-only]="!text"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonContentTemplate">
+      </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <button
+      mat-button
+      class="app-button"
+      type="{{ isSubmit ? 'submit' : 'button' }}"
+      matTooltip="{{ tooltip }}"
+      [attr.id]="elementId"
+      [class.app-button--icon-only]="!text"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="onClick($event)"
+    >
+      <ng-container *ngTemplateOutlet="appButtonContentTemplate">
+      </ng-container>
+    </button>
+  </ng-container>
+</ng-container>
+
+<input
+  *ngIf="isUploadButton"
+  #fileInput
+  class="file-upload"
+  type="file"
+  (change)="onFileChange($event)"
+  [multiple]="isUploadMultiple"
+  [accept]="fileAccept"
+/>
+
+<ng-template #appButtonIconTemplate>
+  <app-icon
+    *ngIf="icon || customIcon"
+    [icon]="icon"
+    [color]="iconColor"
+    [customIcon]="customIcon"
+    class="app-button__icon"
+  ></app-icon>
+</ng-template>
+
+<ng-template #appButtonAfterIconTemplate>
+  <app-icon
+    *ngIf="afterIcon"
+    [icon]="afterIcon"
+    class="app-button__icon app-button__icon--after"
+  ></app-icon>
+</ng-template>
+
+<ng-template #appButtonContentTemplate>
+  <div class="app-button__content">
+    <ng-container *ngTemplateOutlet="appButtonIconTemplate"> </ng-container>
+    <span *ngIf="text">{{ text }}</span>
+    <ng-container *ngTemplateOutlet="appButtonAfterIconTemplate">
+    </ng-container>
+  </div>
+</ng-template>

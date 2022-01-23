@@ -1,0 +1,26 @@
+<app-toolbar class="app-header">
+  <img
+    src="assets/images/logo.png"
+    alt="Logo"
+    class="logo"
+    (click)="navigateHome()"
+  />
+
+  <span *ngIf="!navigationMenuList" class="example-spacer"></span>
+
+  <nav *ngIf="navigationMenuList" class="navigation__nav">
+    <ul class="navigation__list">
+      <li
+        *ngFor="let navigationMenu of navigationMenuList"
+        class="navigation__item"
+      >
+        <a
+          [routerLink]="[navigationMenu.link]"
+          routerLinkActive="navigation__link--active"
+          class="navigation__link"
+          >{{ navigationMenu.text }}</a
+        >
+      </li>
+    </ul>
+  </nav>
+</app-toolbar>

@@ -1,0 +1,113 @@
+.app-button {
+  &--icon-only {
+    height: 3.6rem; // emin değilim
+    min-width: unset !important;
+  }
+
+  &__icon {
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > *:not(:first-child) {
+      padding-left: 0.5rem;
+    }
+  }
+}
+
+:host ::ng-deep .mat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button {
+  min-width: 6.4rem;
+  line-height: 3.6rem;
+  padding: 0 1.6rem;
+}
+
+:host ::ng-deep .mat-icon-button {
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+  padding: 0;
+  min-width: 0;
+  font-size: 2rem;
+}
+
+// :host ::ng-deep .mat-icon-button i,
+// .mat-icon-button .mat-icon {
+//   line-height: 2.4rem;
+// }
+
+:host ::ng-deep .mat-raised-button {
+  min-width: 6.4rem;
+  line-height: 3.6rem;
+  padding: 0 1.6rem;
+}
+
+:host ::ng-deep .mat-stroked-button {
+  padding: 0 1.5rem;
+  line-height: 3.4rem;
+}
+
+:host ::ng-deep .mat-fab {
+  line-height: 3.6rem;
+  width: 5.6rem;
+  height: 5.6rem;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  font-size: 2rem;
+}
+
+:host ::ng-deep .mat-fab .mat-button-wrapper {
+  padding: 1.6rem 0;
+  line-height: 2.4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host ::ng-deep .mat-mini-fab {
+  width: 4rem;
+  height: 4rem;
+  line-height: 3.6rem;
+
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+}
+
+:host ::ng-deep .mat-mini-fab .mat-button-wrapper {
+  padding: 0.8rem 0;
+  line-height: 2.4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host ::ng-deep {
+  .mat-flat-button.mat-primary,
+  .mat-raised-button.mat-primary,
+  .mat-fab.mat-primary,
+  .mat-mini-fab.mat-primary {
+    color: var(--surface);
+  }
+
+  .mat-mini-fab,
+  .mat-icon-button {
+    width: 2.8em;
+    height: 2.8em;
+    font-size: 1em;
+    line-height: 2.8em;
+  }
+}
+
+.file-upload {
+  display: none;
+}

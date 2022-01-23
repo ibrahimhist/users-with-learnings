@@ -1,0 +1,122 @@
+@import '~@angular/material/theming';
+
+$font-weight-sm: 400;
+$font-weight-md: 600;
+$font-weight-xl: 800;
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Lato, sans-serif',
+  $display-4: mat-typography-level(11.2rem, 11.2rem, $font-weight-sm),
+  $display-3: mat-typography-level(5.6rem, 5.6rem, $font-weight-md),
+  $display-2: mat-typography-level(4.5rem, 4.8rem, $font-weight-md),
+  $display-1: mat-typography-level(3.4rem, 4rem, $font-weight-md),
+  $headline: mat-typography-level(2.4rem, 3.2rem, $font-weight-md),
+  $title: mat-typography-level(2rem, 3.2rem, $font-weight-xl),
+  $subheading-2: mat-typography-level(1.6rem, 2.8rem, $font-weight-md),
+  $subheading-1: mat-typography-level(1.5rem, 2.4rem, $font-weight-md),
+  $body-2: mat-typography-level(1.4rem, 2.4rem, $font-weight-md),
+  $body-1: mat-typography-level(1.4rem, 2rem, $font-weight-sm),
+  $caption: mat-typography-level(1.2rem, 2rem, $font-weight-md),
+  $button: mat-typography-level(1.4rem, 1.4rem, $font-weight-sm),
+  $input: mat-typography-level(1.4rem, 1.25, $font-weight-sm),
+);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($custom-typography);
+
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+// Override the typography in the core CSS.
+@include mat-core($custom-typography);
+
+@function my-light-theme(
+  $primary,
+  $accent,
+  $warn: mat-palette($mat-red),
+  $success: mat-palette($mat-green)
+) {
+  @return map-merge(
+    mat-light-theme($primary, $accent, $warn),
+    (
+      success: $success,
+    )
+  );
+}
+
+// Define the default
+$default-primary-light: mat-palette($mat-orange, 300);
+$default-primary: mat-palette($mat-orange, 500, 300, 700);
+$default-primary-dark: mat-palette($mat-orange, 700);
+
+$default-accent: mat-palette($mat-amber);
+$default-warn: mat-palette($mat-red);
+$default-success: mat-palette($mat-green);
+
+$default-theme: my-light-theme(
+  $default-primary,
+  $default-accent,
+  $default-warn,
+  $default-success
+);
+
+// default color variable
+$color-default-primary: mat-color(map-get($default-theme, primary));
+$color-default-primary-light: mat-color($default-primary-light);
+$color-default-primary-dark: mat-color($default-primary-dark);
+
+$color-default-primary-backdrop: rgba($color-default-primary, 0.25);
+
+$color-default-accent: mat-color(map-get($default-theme, accent));
+
+$color-default-warn: mat-color(map-get($default-theme, warn));
+$color-default-warn-backdrop: rgba($color-default-warn, 0.25);
+
+$color-default-success: mat-color(map-get($default-theme, success));
+
+// general colors
+
+$color-gray-light: mat-color(mat-palette($mat-gray, 200));
+$color-gray: mat-color(mat-palette($mat-gray));
+$color-gray-darkest: mat-color(mat-palette($mat-gray, 800));
+
+$color-red-light: mat-color(mat-palette($mat-red, 200));
+$color-red: mat-color(mat-palette($mat-red));
+$color-red-darkest: mat-color(mat-palette($mat-red, 800));
+
+:root {
+  --font-weight-sm: #{$font-weight-sm};
+  --font-weight-md: #{$font-weight-md};
+  --font-weight-xl: #{$font-weight-xl};
+
+  --color-primary: #{$color-default-primary};
+  --color-primary-light: #{$color-default-primary-light};
+  --color-primary-dark: #{$color-default-primary-dark};
+
+  --color-accent: #{$color-default-accent};
+  --color-warn: #{$color-default-warn};
+  --color-success: #{$color-default-success};
+
+  --color-primary-backdrop: #{$color-default-primary-backdrop};
+  --color-warn-backdrop: #{$color-default-warn-backdrop};
+
+  --color-primary-text: #212121;
+  --color-secondary-text: #757575;
+  --color-divider: #f4f2f2;
+
+  --background: #f9fbfc;
+  --surface: #fff;
+
+  --color-gray-light: #{$color-gray-light};
+  --color-gray: #{$color-gray};
+  --color-gray-darkest: #{$color-gray-darkest};
+
+  --color-red-light: #{$color-red-light};
+  --color-red: #{$color-red};
+  --color-red-darkest: #{$color-red-darkest};
+}
+
+@include angular-material-theme($default-theme);

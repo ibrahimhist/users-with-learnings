@@ -1,0 +1,8 @@
+<fa-icon
+  *ngIf="!customIcon && icon"
+  [icon]="getIconValue"
+  class="app-icon"
+  [ngClass]="iconClass"
+></fa-icon>
+
+<mat-icon *ngIf="customIcon" [svgIcon]="customIcon" class="app-icon"></mat-icon>

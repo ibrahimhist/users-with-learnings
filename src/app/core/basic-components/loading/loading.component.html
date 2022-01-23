@@ -1,0 +1,14 @@
+<div ngxUiLoaderBlurred [blur]="10">
+  <!-- This page content will be blurred/frosted when foreground loader is showed -->
+</div>
+
+<ngx-ui-loader
+  [fgsTemplate]="foregroundSpinner"
+  [fgsSize]="250"
+  [bgsSize]="250"
+  [bgsTemplate]="foregroundSpinner"
+></ngx-ui-loader>
+
+<ng-template #foregroundSpinner>
+  <img src="assets/images/loading.gif" class="loading__img" />
+</ng-template>

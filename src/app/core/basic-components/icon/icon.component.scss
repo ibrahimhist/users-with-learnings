@@ -1,0 +1,42 @@
+.app-icon {
+  // display: inline-block;
+  // line-height: 1;
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  pointer-events: none;
+  //   width: 2.4rem;
+  //   height: 2.4rem;
+
+  &--primary {
+    color: var(--color-primary);
+  }
+
+  &--secondary-text {
+    color: var(--color-secondary-text);
+  }
+
+  &--accent {
+    color: var(--color-accent);
+  }
+
+  &--warn {
+    color: var(--color-warn);
+  }
+}
+
+.mat-icon {
+  width: 1em !important;
+  height: 1em !important;
+  // font-size: inherit !important;
+  // vertical-align: inherit;
+  // margin-top: -2px; // denemek lazım
+}
+
+:host {
+  // vertical-align: middle;
+  display: inline-block;
+}

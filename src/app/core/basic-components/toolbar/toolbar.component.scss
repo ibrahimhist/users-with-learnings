@@ -1,0 +1,20 @@
+:host ::ng-deep .mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 0 1.6rem;
+  height: 6.4rem;
+}
+
+@media (max-width: 599px) {
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    height: 5.6rem;
+  }
+}
+
+.app-toolbar {
+  &--sticky {
+    position: sticky;
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  }
+}

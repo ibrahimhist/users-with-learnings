@@ -1,0 +1,39 @@
+.sweetalert {
+  &__container {
+    &--primary {
+      background-color: var(--color-primary-backdrop) !important;
+    }
+
+    &--red {
+      background-color: var(--color-warn-backdrop) !important;
+    }
+  }
+
+  &__title {
+    font-size: 1.7rem !important;
+    // margin: 2rem 0 !important;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-text) !important;
+    font-weight: var(--font-weight-md) !important;
+    // margin: 2rem 0;
+  }
+
+  &__content {
+    font-size: 1.5rem !important;
+    color: var(--color-secondary-text) !important;
+  }
+
+  &__confirm-btn {
+    background-color: var(--color-primary) !important;
+    font-size: 1.3rem !important;
+    // margin-top: 2rem !important;
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--color-primary-backdrop) !important;
+    }
+  }
+
+  &__cancel-btn {
+    font-size: 1.3rem !important;
+  }
+}
