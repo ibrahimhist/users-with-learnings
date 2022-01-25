@@ -33,13 +33,14 @@
 
       <app-button
         actions
-        [icon]="learning.status === 'archived' ? 'check' : 'archive'"
-        [color]="learning.status === 'archived' ? 'secondary' : 'primary'"
+        [icon]="learning.status === 'archived' ? 'archive' : 'check'"
+        [color]="learning.status === 'archived' ? 'primary' : 'secondary'"
         buttonType="icon"
         [tooltip]="
           'Change Status to ' +
           (learning.status === 'archived' ? 'Active' : 'Archive')
         "
+        (clicked)="onClickChangeStatus(learning)"
       ></app-button>
 
       <app-button

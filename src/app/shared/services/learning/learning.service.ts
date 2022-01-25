@@ -6,7 +6,10 @@ import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { LoadingService } from '../loading.service';
 import { MessageHandlingService } from '../message-handling.service';
 
-import { ILearning } from '@app/shared/models/learning.model';
+import {
+  ILearning,
+  LearningStatusType,
+} from '@app/shared/models/learning.model';
 
 import { BaseService } from '../base.service';
 @Injectable({
@@ -61,18 +64,36 @@ export class LearningService extends BaseService {
         this.setLearnings([x, ...this.learningsSubject.getValue()]);
         return x;
       }),
-      catchError(this.handleError<ILearning[]>(`createUsers`))
+      catchError(this.handleError<ILearning[]>(`createLearning`))
     );
   }
 
-  deleteLearning(learningId: number): Observable<{ success: boolean }> {
+  deleteLearning(id: number): Observable<{ success: boolean }> {
     return of({ success: true }).pipe(
       map((x) => {
         const learnings = this.learningsSubject.getValue();
-        this.setLearnings(learnings.filter((x) => x.id !== learningId));
+        this.setLearnings(learnings.filter((x) => x.id !== id));
         return x;
       }),
-      catchError(this.handleError(`deleteUsers`))
+      catchError(this.handleError(`deleteLearning`))
+    ) as any;
+  }
+
+  changeLearningStatus(
+    id: number,
+    newStatus: LearningStatusType
+  ): Observable<{ success: boolean }> {
+    return of({ success: true }).pipe(
+      map((x) => {
+        const learnings = this.learningsSubject.getValue();
+        const foundLeaning = learnings.find((x) => x.id === id);
+        if (foundLeaning) {
+          foundLeaning.status = newStatus;
+          this.setLearnings(learnings);
+        }
+        return x;
+      }),
+      catchError(this.handleError(`changeLearningStatus`))
     ) as any;
   }
 

@@ -79,7 +79,7 @@ export class LearningsComponent implements OnInit {
       .subscribe((result: { success: boolean }) => {
         if (result.success)
           this.messageHandlingService.showSuccessMessage(
-            'User successfully deleted!',
+            'Learning successfully deleted!',
             '',
             true
           );
@@ -95,6 +95,21 @@ export class LearningsComponent implements OnInit {
       .subscribe((result) => {
         if (result.isConfirmed) {
           this.deleteLearning(learning.id);
+        }
+      });
+  }
+
+  onClickChangeStatus(learning: ILearning): void {
+    const newStatus = learning.status === 'active' ? 'archived' : 'active';
+    this.learningService
+      .changeLearningStatus(learning.id, newStatus)
+      .subscribe((response) => {
+        if (response.success) {
+          this.messageHandlingService.showSuccessMessage(
+            'Learning successfully status changed!',
+            '',
+            true
+          );
         }
       });
   }
