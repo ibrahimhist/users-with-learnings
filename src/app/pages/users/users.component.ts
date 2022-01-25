@@ -48,11 +48,6 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  onClickRemove(): void {
-    console.log(this.pageSize);
-    console.log(this.pageIndex);
-  }
-
   onChangeSearchInput(): void {
     this.paginator.firstPage();
   }
@@ -75,6 +70,32 @@ export class UsersComponent implements OnInit {
             '',
             true
           );
+        }
+      });
+  }
+
+  deleteUser(id: number): void {
+    this.userService
+      .deleteUser(id)
+      .subscribe((result: { success: boolean }) => {
+        if (result.success)
+          this.messageHandlingService.showSuccessMessage(
+            'User successfully deleted!',
+            '',
+            true
+          );
+      });
+  }
+
+  onClickRemove(user: IUser): void {
+    this.messageHandlingService
+      .showConfirm(
+        'Remove User',
+        `Are you sure you want to delete: ${user.first_name}  ${user.last_name}`
+      )
+      .subscribe((result) => {
+        if (result.isConfirmed) {
+          this.deleteUser(user.id);
         }
       });
   }

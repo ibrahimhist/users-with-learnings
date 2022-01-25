@@ -43,11 +43,23 @@ export class UserService extends BaseService {
   createUser(user: IUser) {
     return of(user).pipe(
       map((x) => {
+        x.id = Date.now();
         this.setUsers([x, ...this.usersSubject.getValue()]);
         return x;
       }),
       catchError(this.handleError<IUser[]>(`createUsers`))
     );
+  }
+
+  deleteUser(userId: number): Observable<{ success: boolean }> {
+    return of({ success: true }).pipe(
+      map((x) => {
+        const users = this.usersSubject.getValue();
+        this.setUsers(users.filter((x) => x.id !== userId));
+        return x;
+      }),
+      catchError(this.handleError(`deleteUsers`))
+    ) as any;
   }
 
   getAndSetUsers(): void {
