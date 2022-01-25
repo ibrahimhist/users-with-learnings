@@ -48,7 +48,7 @@ export class LearningService extends BaseService {
                 id: x.id,
                 name: x.product_name,
                 status: 'active',
-                assignedUser: [],
+                assignedUsers: [],
                 avatar: 'https://picsum.photos/200/300?random=' + (index + 1),
               } as ILearning)
           );
@@ -89,6 +89,24 @@ export class LearningService extends BaseService {
         const foundLeaning = learnings.find((x) => x.id === id);
         if (foundLeaning) {
           foundLeaning.status = newStatus;
+          this.setLearnings(learnings);
+        }
+        return x;
+      }),
+      catchError(this.handleError(`changeLearningStatus`))
+    ) as any;
+  }
+
+  assignUsersToLearning(
+    id: number,
+    userIds: number[]
+  ): Observable<{ success: boolean }> {
+    return of({ success: true }).pipe(
+      map((x) => {
+        const learnings = this.learningsSubject.getValue();
+        const foundLeaning = learnings.find((x) => x.id === id);
+        if (foundLeaning) {
+          foundLeaning.assignedUsers = userIds;
           this.setLearnings(learnings);
         }
         return x;

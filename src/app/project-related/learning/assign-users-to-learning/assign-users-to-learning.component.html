@@ -1,0 +1,22 @@
+<app-basic-dialog
+  header="Assign Users to Learning "
+  [isActionButtonSubmit]="true"
+  actionButtonText="Assign"
+  (clickedCancelButton)="onClickedClose()"
+  (clickedActionButton)="onClickedAssign()"
+>
+  <div class="assign-learning">
+    <mat-form-field class="assign-learning__users" appearance="legacy">
+      <mat-label>Users</mat-label>
+      <mat-select
+        [(ngModel)]="selectedUsers"
+        multiple
+        placeholder="Select Users"
+      >
+        <mat-option *ngFor="let user of users" [value]="user.id">{{
+          user.first_name + ' ' + user.last_name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</app-basic-dialog>

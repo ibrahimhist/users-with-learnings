@@ -4,7 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { CreateLearningDialogComponent } from '@app/project-related/project-related-components.index';
+import {
+  AssignUsersToLearningComponent,
+  CreateLearningDialogComponent,
+} from '@app/project-related/project-related-components.index';
 import { LearningService } from '@app/shared/services/learning/learning.service';
 import { MessageHandlingService } from '@app/shared/services/message-handling.service';
 import { ILearning } from '@app/shared/models/learning.model';
@@ -107,6 +110,25 @@ export class LearningsComponent implements OnInit {
         if (response.success) {
           this.messageHandlingService.showSuccessMessage(
             'Learning successfully status changed!',
+            '',
+            true
+          );
+        }
+      });
+  }
+
+  onClickAssignedUsers(learning: ILearning): void {
+    const dialogRef = this.dialog.open(AssignUsersToLearningComponent, {
+      data: learning,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(untilDestroyed(this))
+      .subscribe((result: { success: boolean }) => {
+        if (result?.success) {
+          this.messageHandlingService.showSuccessMessage(
+            'Users successfully assigned!',
             '',
             true
           );

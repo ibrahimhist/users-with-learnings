@@ -4,6 +4,6 @@ export interface ILearning {
   id: number;
   name: string;
   status: LearningStatusType;
-  assignedUser: number[];
+  assignedUsers: number[];
   avatar: string;
 }

@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   exports: [
@@ -25,6 +26,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatPaginatorModule,
     MatDialogModule,
     MatRadioModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}
