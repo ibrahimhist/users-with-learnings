@@ -33,7 +33,9 @@
         actions
         icon="book"
         buttonType="icon"
-        tooltip="X learnings"
+        [tooltip]="user?.learnings?.length + ' Learnings'"
+        [disabled]="user?.learnings?.length === 0"
+        (clicked)="onClickShowLearnings(user)"
       ></app-button>
 
       <app-button

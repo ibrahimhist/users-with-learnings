@@ -26,6 +26,7 @@ import { UserService } from './shared/services/user/user.service';
 import { LearningService } from './shared/services/learning/learning.service';
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { ProjectRelatedComponents } from './project-related/project-related-components.index';
+import { LearningListDialogComponent } from './project-related/learning/learning-list-dialog/learning-list-dialog.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false,
@@ -41,6 +42,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LearningsComponent,
     ...ProjectRelatedComponents,
     SearchPipe,
+    LearningListDialogComponent,
   ],
   imports: [
     BrowserModule,

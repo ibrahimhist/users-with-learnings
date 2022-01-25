@@ -1,0 +1,16 @@
+<app-basic-dialog
+  header="Learnings"
+  [showCancelButton]="false"
+  actionButtonText="Ok"
+  (clickedCancelButton)="onClickedClose()"
+  (clickedActionButton)="onClickedClose()"
+>
+  <div class="learning-list">
+    <app-image-card
+      *ngFor="let learning of learnings"
+      [title]="learning.name"
+      [imageUrl]="learning.avatar"
+    >
+    </app-image-card>
+  </div>
+</app-basic-dialog>

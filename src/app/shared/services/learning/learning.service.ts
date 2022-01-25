@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 
 import { LoadingService } from '../loading.service';
 import { MessageHandlingService } from '../message-handling.service';
@@ -34,6 +34,11 @@ export class LearningService extends BaseService {
     this.learningsSubject.next(learnings);
   }
 
+  getLearningsFromIdList(learningIds: number[]) {
+    const learnings = this.learningsSubject.getValue();
+    return learnings.filter((x) => learningIds.includes(x.id));
+  }
+
   getLearnings(): Observable<ILearning[]> {
     return this.http
       .get<any[]>(
@@ -59,10 +64,9 @@ export class LearningService extends BaseService {
 
   createLearning(learning: ILearning) {
     return of(learning).pipe(
-      map((x) => {
+      tap((x) => {
         x.id = Date.now();
         this.setLearnings([x, ...this.learningsSubject.getValue()]);
-        return x;
       }),
       catchError(this.handleError<ILearning[]>(`createLearning`))
     );
@@ -70,10 +74,9 @@ export class LearningService extends BaseService {
 
   deleteLearning(id: number): Observable<{ success: boolean }> {
     return of({ success: true }).pipe(
-      map((x) => {
+      tap((x) => {
         const learnings = this.learningsSubject.getValue();
         this.setLearnings(learnings.filter((x) => x.id !== id));
-        return x;
       }),
       catchError(this.handleError(`deleteLearning`))
     ) as any;
@@ -84,14 +87,13 @@ export class LearningService extends BaseService {
     newStatus: LearningStatusType
   ): Observable<{ success: boolean }> {
     return of({ success: true }).pipe(
-      map((x) => {
+      tap((x) => {
         const learnings = this.learningsSubject.getValue();
         const foundLeaning = learnings.find((x) => x.id === id);
         if (foundLeaning) {
           foundLeaning.status = newStatus;
           this.setLearnings(learnings);
         }
-        return x;
       }),
       catchError(this.handleError(`changeLearningStatus`))
     ) as any;
@@ -102,14 +104,13 @@ export class LearningService extends BaseService {
     userIds: number[]
   ): Observable<{ success: boolean }> {
     return of({ success: true }).pipe(
-      map((x) => {
+      tap((x) => {
         const learnings = this.learningsSubject.getValue();
         const foundLeaning = learnings.find((x) => x.id === id);
         if (foundLeaning) {
           foundLeaning.assignedUsers = userIds;
           this.setLearnings(learnings);
         }
-        return x;
       }),
       catchError(this.handleError(`changeLearningStatus`))
     ) as any;
@@ -118,7 +119,6 @@ export class LearningService extends BaseService {
   getAndSetLearnings(): void {
     this.getLearnings().subscribe((response) => {
       if (response) {
-        console.log(response);
         this.setLearnings(response);
       }
     });

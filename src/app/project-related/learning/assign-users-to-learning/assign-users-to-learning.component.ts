@@ -14,6 +14,7 @@ import { IUser } from '@app/shared/models/user.model';
   templateUrl: './assign-users-to-learning.component.html',
   styleUrls: ['./assign-users-to-learning.component.scss'],
 })
+// I should name it AssignUsersToLearningComponentDialog my mistake
 export class AssignUsersToLearningComponent implements OnInit {
   users: IUser[];
   selectedUsers: number[];
