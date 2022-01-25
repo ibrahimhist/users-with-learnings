@@ -1,0 +1,50 @@
+.basic-dialog {
+  &__header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  &__header-text {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-md);
+    flex: 1;
+  }
+
+  &__header-btns {
+  }
+
+  &__content {
+  }
+
+  &__close-btn {
+    font-size: 1.6rem;
+    color: var(--color-secondary-text);
+  }
+
+  &__action-btn {
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-dialog-container {
+    padding: 2.4rem;
+  }
+
+  .mat-dialog-content {
+    border-top: 1px solid rgba(82, 63, 105, 0.06);
+    font-family: inherit;
+    font-size: 1.4rem;
+    margin: 0 -2.4rem;
+    padding: 2.4rem;
+  }
+
+  .mat-dialog-actions {
+    padding: 1.5rem 0;
+    min-height: 5.2rem;
+    margin-bottom: -2.4rem;
+  }
+}

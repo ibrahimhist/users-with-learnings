@@ -1,0 +1,42 @@
+<div class="basic-dialog">
+  <div class="basic-dialog__header">
+    <div class="basic-dialog__header-text">
+      {{ header }}
+    </div>
+    <div #headerButtonContainer class="basic-dialog__btns">
+      <app-button
+        class="basic-dialog__close-btn"
+        icon="times"
+        buttonType="icon"
+        (clicked)="onClickedClose($event)"
+      >
+      </app-button>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <ng-content></ng-content>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" *ngIf="showActionButton || showCancelButton">
+  <app-button
+    *ngIf="showCancelButton"
+    class="basic-dialog__action-btn"
+    [text]="cancelButtonText"
+    buttonType="flat"
+    (clicked)="onClickedClose($event)"
+  ></app-button>
+
+  <app-button
+    *ngIf="showActionButton"
+    [isSubmit]="isActionButtonSubmit"
+    [disabled]="disableActionButton"
+    class="basic-dialog__action-btn"
+    cdkFocusInitial
+    [text]="actionButtonText"
+    color="primary"
+    buttonType="flat"
+    (clicked)="onClickedActionButton($event)"
+  ></app-button>
+</mat-dialog-actions>

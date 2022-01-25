@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   exports: [
@@ -21,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatBadgeModule,
     MatInputModule,
     MatPaginatorModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}
