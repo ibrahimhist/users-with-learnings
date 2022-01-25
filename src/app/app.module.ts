@@ -25,6 +25,7 @@ import { MessageHandlingService } from './shared/services/message-handling.servi
 import { UserService } from './shared/services/user/user.service';
 import { LearningService } from './shared/services/learning/learning.service';
 import { SearchPipe } from './shared/pipes/search.pipe';
+import { ProjectRelatedComponents } from './project-related/project-related-components.index';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false,
@@ -38,7 +39,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FooterComponent,
     UsersComponent,
     LearningsComponent,
-
+    ...ProjectRelatedComponents,
     SearchPipe,
   ],
   imports: [

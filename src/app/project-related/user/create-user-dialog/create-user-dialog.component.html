@@ -1,0 +1,55 @@
+<form [formGroup]="createUserForm">
+  <app-basic-dialog
+    header="Create User"
+    [isActionButtonSubmit]="true"
+    actionButtonText="Create"
+    (clickedCancelButton)="onClickedClose()"
+    (clickedActionButton)="onClickedCreate()"
+  >
+    <div class="create-user">
+      <mat-form-field appearance="legacy">
+        <mat-label>First Name</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Write First Name"
+          formControlName="first_name"
+        />
+        <mat-error>First Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Last Name</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Write Last Name"
+          formControlName="last_name"
+        />
+        <mat-error>Last Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Email</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Write Email"
+          formControlName="email"
+          type="email"
+        />
+        <mat-error>Avatar required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Avatar</mat-label>
+        <input
+          matInput
+          placeholder="Write Avatar URL"
+          formControlName="avatar"
+        />
+        <mat-error>Avatar required</mat-error>
+      </mat-form-field>
+    </div>
+  </app-basic-dialog>
+</form>

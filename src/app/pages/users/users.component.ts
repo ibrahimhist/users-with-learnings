@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import { CreateUserDialogComponent } from '@app/project-related/project-related-components.index';
+import { MessageHandlingService } from '@app/shared/services/message-handling.service';
 import { UserService } from '@app/shared/services/user/user.service';
 import { IUser } from '@app/shared/models/user.model';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @UntilDestroy()
 @Component({
@@ -23,7 +27,11 @@ export class UsersComponent implements OnInit {
   pageIndex: number;
   pageSizeOptions: number[];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog,
+    private messageHandlingService: MessageHandlingService
+  ) {}
 
   ngOnInit(): void {
     this.searchFields = ['first_name', 'last_name', 'email'];
@@ -52,5 +60,22 @@ export class UsersComponent implements OnInit {
   onPagination(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
+  }
+
+  onClickedOpen(): void {
+    const dialogRef = this.dialog.open(CreateUserDialogComponent, {});
+
+    dialogRef
+      .afterClosed()
+      .pipe(untilDestroyed(this))
+      .subscribe((result: { success: boolean }) => {
+        if (result.success) {
+          this.messageHandlingService.showSuccessMessage(
+            'User successfully created!',
+            '',
+            true
+          );
+        }
+      });
   }
 }

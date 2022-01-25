@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 
 import { IUser } from '@app/shared/models/user.model';
 import { LoadingService } from '../loading.service';
@@ -38,6 +38,16 @@ export class UserService extends BaseService {
         this.httpOptions
       )
       .pipe(catchError(this.handleError<IUser[]>(`getUsers`)));
+  }
+
+  createUser(user: IUser) {
+    return of(user).pipe(
+      map((x) => {
+        this.setUsers([x, ...this.usersSubject.getValue()]);
+        return x;
+      }),
+      catchError(this.handleError<IUser[]>(`createUsers`))
+    );
   }
 
   getAndSetUsers(): void {

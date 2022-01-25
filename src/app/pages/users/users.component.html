@@ -10,7 +10,9 @@
     />
   </div>
   <div class="users__actions">
-    <span class="users__actions__btn">+ Create User</span>
+    <span class="users__actions__btn" (click)="onClickedOpen()"
+      >+ Create User</span
+    >
   </div>
   <div class="users__list">
     <app-fancy-card
@@ -58,3 +60,5 @@
     </mat-paginator>
   </div>
 </div>
+
+<app-create-user-dialog></app-create-user-dialog>
