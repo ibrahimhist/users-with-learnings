@@ -57,14 +57,14 @@ export class UsersComponent implements OnInit {
     this.pageSize = event.pageSize;
   }
 
-  onClickedOpen(): void {
+  onClickCreateUser(): void {
     const dialogRef = this.dialog.open(CreateUserDialogComponent, {});
 
     dialogRef
       .afterClosed()
       .pipe(untilDestroyed(this))
       .subscribe((result: { success: boolean }) => {
-        if (result.success) {
+        if (result?.success) {
           this.messageHandlingService.showSuccessMessage(
             'User successfully created!',
             '',

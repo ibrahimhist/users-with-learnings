@@ -1,0 +1,31 @@
+<form [formGroup]="createLearningForm">
+  <app-basic-dialog
+    header="Create Learning"
+    [isActionButtonSubmit]="true"
+    actionButtonText="Create"
+    (clickedCancelButton)="onClickedClose()"
+    (clickedActionButton)="onClickedCreate()"
+  >
+    <div class="create-learning">
+      <mat-form-field appearance="legacy">
+        <mat-label>Name</mat-label>
+        <input required matInput placeholder="Name" formControlName="name" />
+        <mat-error>Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-radio-group class="status-radio-group" formControlName="status">
+        <mat-radio-button value="active">Active</mat-radio-button>
+        <mat-radio-button value="archived">Archived</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Avatar</mat-label>
+        <input
+          matInput
+          placeholder="Write Avatar URL"
+          formControlName="avatar"
+        />
+      </mat-form-field>
+    </div>
+  </app-basic-dialog>
+</form>

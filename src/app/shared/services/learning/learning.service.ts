@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 
 import { LoadingService } from '../loading.service';
 import { MessageHandlingService } from '../message-handling.service';
@@ -52,6 +52,28 @@ export class LearningService extends BaseService {
         }),
         catchError(this.handleError<ILearning[]>(`getLearnings`))
       );
+  }
+
+  createLearning(learning: ILearning) {
+    return of(learning).pipe(
+      map((x) => {
+        x.id = Date.now();
+        this.setLearnings([x, ...this.learningsSubject.getValue()]);
+        return x;
+      }),
+      catchError(this.handleError<ILearning[]>(`createUsers`))
+    );
+  }
+
+  deleteLearning(learningId: number): Observable<{ success: boolean }> {
+    return of({ success: true }).pipe(
+      map((x) => {
+        const learnings = this.learningsSubject.getValue();
+        this.setLearnings(learnings.filter((x) => x.id !== learningId));
+        return x;
+      }),
+      catchError(this.handleError(`deleteUsers`))
+    ) as any;
   }
 
   getAndSetLearnings(): void {

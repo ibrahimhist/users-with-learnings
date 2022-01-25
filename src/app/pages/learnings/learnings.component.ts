@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
-import { ILearning } from '@app/shared/models/learning.model';
+import { CreateLearningDialogComponent } from '@app/project-related/project-related-components.index';
 import { LearningService } from '@app/shared/services/learning/learning.service';
+import { MessageHandlingService } from '@app/shared/services/message-handling.service';
+import { ILearning } from '@app/shared/models/learning.model';
 
 @UntilDestroy()
 @Component({
@@ -23,7 +26,11 @@ export class LearningsComponent implements OnInit {
   pageIndex: number;
   pageSizeOptions: number[];
 
-  constructor(private learningService: LearningService) {}
+  constructor(
+    private learningService: LearningService,
+    public dialog: MatDialog,
+    private messageHandlingService: MessageHandlingService
+  ) {}
 
   ngOnInit(): void {
     this.searchFields = ['name'];
@@ -40,9 +47,21 @@ export class LearningsComponent implements OnInit {
       });
   }
 
-  onClickRemove(): void {
-    console.log(this.pageSize);
-    console.log(this.pageIndex);
+  onClickCreateLearning(): void {
+    const dialogRef = this.dialog.open(CreateLearningDialogComponent, {});
+
+    dialogRef
+      .afterClosed()
+      .pipe(untilDestroyed(this))
+      .subscribe((result: { success: boolean }) => {
+        if (result?.success) {
+          this.messageHandlingService.showSuccessMessage(
+            'Learning successfully created!',
+            '',
+            true
+          );
+        }
+      });
   }
 
   onChangeSearchInput(): void {
@@ -52,5 +71,31 @@ export class LearningsComponent implements OnInit {
   onPagination(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
+  }
+
+  deleteLearning(id: number): void {
+    this.learningService
+      .deleteLearning(id)
+      .subscribe((result: { success: boolean }) => {
+        if (result.success)
+          this.messageHandlingService.showSuccessMessage(
+            'User successfully deleted!',
+            '',
+            true
+          );
+      });
+  }
+
+  onClickRemove(learning: ILearning): void {
+    this.messageHandlingService
+      .showConfirm(
+        'Remove Learning',
+        `Are you sure you want to delete: ${learning.name}`
+      )
+      .subscribe((result) => {
+        if (result.isConfirmed) {
+          this.deleteLearning(learning.id);
+        }
+      });
   }
 }

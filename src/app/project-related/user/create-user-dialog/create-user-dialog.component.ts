@@ -34,10 +34,6 @@ export class CreateUserDialogComponent implements OnInit {
     });
   }
 
-  get firstName() {
-    return this.createUserForm.get('first_name') as AbstractControl;
-  }
-
   onClickedClose(): void {
     this.dialogRef.close();
   }

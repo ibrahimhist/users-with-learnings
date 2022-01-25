@@ -10,7 +10,9 @@
     />
   </div>
   <div class="learnings__actions">
-    <span class="learnings__actions__btn">+ Create Learning</span>
+    <span class="learnings__actions__btn" (click)="onClickCreateLearning()"
+      >+ Create Learning</span
+    >
   </div>
   <div class="learnings__list">
     <app-image-card
@@ -31,12 +33,12 @@
 
       <app-button
         actions
-        [icon]="learning.status === 'archive' ? 'check' : 'archive'"
-        [color]="learning.status === 'archive' ? 'secondary' : 'primary'"
+        [icon]="learning.status === 'archived' ? 'check' : 'archive'"
+        [color]="learning.status === 'archived' ? 'secondary' : 'primary'"
         buttonType="icon"
         [tooltip]="
           'Change Status to ' +
-          (learning.status === 'archive' ? 'Active' : 'Archive')
+          (learning.status === 'archived' ? 'Active' : 'Archive')
         "
       ></app-button>
 
@@ -46,7 +48,7 @@
         buttonType="icon"
         tooltip="Remove User"
         color="error"
-        (clicked)="onClickRemove()"
+        (clicked)="onClickRemove(learning)"
       ></app-button>
     </app-image-card>
   </div>
